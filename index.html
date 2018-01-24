@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <select>
+            <option value=>{{ count }}</option>
+        </select>
+
+        {{ count }}
+        <button @click="handleClick">로또 번호</button>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello World',
+            count: 3,
+        },
+        methods: {
+            handleClick: function () {
+                // console.log(this.count)
+                this.getLottoNumber(1)
+            },
+            getRandomInt: function (min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            },
+            getLottoNumber: function (count) {
+                let lottoNumber = [];
+                let index = 0;
+
+                // for (let index = 0; index < 5; index++) {
+
+                // let testArray = [1,2];
+                // console.log(testArray.indexOf(2))
+                // if (testArray.indexOf(3) === -1) {
+                //     console.log("if")
+                // }
+                // else {
+
+                //     console.log("else")
+                // }
+
+                while (index < 5) {
+                    let randomNumber = this.getRandomInt(1, 5);
+                    console.log(`[TS_LOG] randomNumber : ${randomNumber}`);
+                    console.log(`[TS_LOG] lottoNumber : ${lottoNumber}`);
+                    // console.log(lottoNumber.indexOf(randomNumber))
+                    // index++;
+                    if (lottoNumber.indexOf(randomNumber === -1)) {
+                        console.log(randomNumber)
+                        lottoNumber.push(randomNumber)
+                        index++;
+                    }
+                    else {
+                        console.log("else index : " + index)
+                    }
+                }
+
+                return lottoNumber;
+            }
+        }
+    })
+</script>
+
+</html>
