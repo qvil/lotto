@@ -16,7 +16,8 @@
         </select>
 
         {{ count }}
-        <button @click="handleClick">로또 번호</button>
+        <button @click="handleClick">번호</button>
+        {{ result }}
     </div>
 </body>
 <script>
@@ -25,19 +26,46 @@
         data: {
             message: 'Hello World',
             count: 3,
+            result: null,
         },
         methods: {
             handleClick: function () {
                 // console.log(this.count)
-                this.getLottoNumber(1)
+                this.result = this.getLottoNumber(1)
             },
             getRandomInt: function (min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
+                return Math.floor(Math.random() * (max - min) + 1) + min;
             },
             getLottoNumber: function (count) {
-                let lottoNumber = [];
-                let index = 0;
+                // let lottoNumber = [];
+                let lottoNumber = new Array(5);
 
+                // while (index < 5) {
+
+                for (let index = 0; index < lottoNumber.length; index++) {
+                    // if (lottoNumber.indexOf(randomNumber) !== -1) {
+                    //     lottoNumber.push(randomNumber)
+                    //     _index++
+                    // }
+                    // lottoNumber.push(randomNumber)
+                    let randomNumber = this.getRandomInt(1, 45);
+
+                    lottoNumber[index] = randomNumber
+                }
+
+
+                // lottoNumber.map((value, index) => {
+                //     console.log(`[TS_LOG] value : ${value}`);
+                //     if (lottoNumber.indexOf(randomNumber) !== -1) {
+                //         lottoNumber.push(randomNumber)
+                //         index++
+                //     }
+                //     else {
+                //         console.log("elser")
+                //         return;
+                //     }
+                // });
+                // }
                 // for (let index = 0; index < 5; index++) {
 
                 // let testArray = [1,2];
@@ -50,22 +78,23 @@
                 //     console.log("else")
                 // }
 
-                while (index < 5) {
-                    let randomNumber = this.getRandomInt(1, 5);
-                    console.log(`[TS_LOG] randomNumber : ${randomNumber}`);
-                    console.log(`[TS_LOG] lottoNumber : ${lottoNumber}`);
-                    // console.log(lottoNumber.indexOf(randomNumber))
-                    // index++;
-                    if (lottoNumber.indexOf(randomNumber === -1)) {
-                        console.log(randomNumber)
-                        lottoNumber.push(randomNumber)
-                        index++;
-                    }
-                    else {
-                        console.log("else index : " + index)
-                    }
-                }
+                // while (index < 5) {
+                //     let randomNumber = this.getRandomInt(1, 5);
+                //     console.log(`[TS_LOG] randomNumber : ${randomNumber}`);
+                //     console.log(`[TS_LOG] lottoNumber : ${lottoNumber}`);
+                //     // console.log(lottoNumber.indexOf(randomNumber))
+                //     // index++;
+                //     if (lottoNumber.indexOf(randomNumber === -1)) {
+                //         console.log(randomNumber)
+                //         lottoNumber.push(randomNumber)
+                //         index++;
+                //     }
+                //     else {
+                //         console.log("else index : " + index)
+                //     }
+                // }
 
+                console.log(lottoNumber.sort((a, b) => a - b))
                 return lottoNumber;
             }
         }
