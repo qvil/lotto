@@ -37,64 +37,19 @@
                 return Math.floor(Math.random() * (max - min) + 1) + min;
             },
             getLottoNumber: function (count) {
-                // let lottoNumber = [];
-                let lottoNumber = new Array(5);
+                let lottoNumber = [];
+                let min = 0;
+                let max = 45;
 
-                // while (index < 5) {
-
-                for (let index = 0; index < lottoNumber.length; index++) {
-                    // if (lottoNumber.indexOf(randomNumber) !== -1) {
-                    //     lottoNumber.push(randomNumber)
-                    //     _index++
-                    // }
-                    // lottoNumber.push(randomNumber)
-                    let randomNumber = this.getRandomInt(1, 45);
-
+                for (let index = 0; index < 5; index++) {
+                    let randomNumber = this.getRandomInt(min, max);
+                    while (lottoNumber.indexOf(randomNumber) !== -1) {
+                        randomNumber = this.getRandomInt(min, max);
+                    }
                     lottoNumber[index] = randomNumber
                 }
 
-
-                // lottoNumber.map((value, index) => {
-                //     console.log(`[TS_LOG] value : ${value}`);
-                //     if (lottoNumber.indexOf(randomNumber) !== -1) {
-                //         lottoNumber.push(randomNumber)
-                //         index++
-                //     }
-                //     else {
-                //         console.log("elser")
-                //         return;
-                //     }
-                // });
-                // }
-                // for (let index = 0; index < 5; index++) {
-
-                // let testArray = [1,2];
-                // console.log(testArray.indexOf(2))
-                // if (testArray.indexOf(3) === -1) {
-                //     console.log("if")
-                // }
-                // else {
-
-                //     console.log("else")
-                // }
-
-                // while (index < 5) {
-                //     let randomNumber = this.getRandomInt(1, 5);
-                //     console.log(`[TS_LOG] randomNumber : ${randomNumber}`);
-                //     console.log(`[TS_LOG] lottoNumber : ${lottoNumber}`);
-                //     // console.log(lottoNumber.indexOf(randomNumber))
-                //     // index++;
-                //     if (lottoNumber.indexOf(randomNumber === -1)) {
-                //         console.log(randomNumber)
-                //         lottoNumber.push(randomNumber)
-                //         index++;
-                //     }
-                //     else {
-                //         console.log("else index : " + index)
-                //     }
-                // }
-
-                console.log(lottoNumber.sort((a, b) => a - b))
+                lottoNumber.sort((a, b) => a - b)
                 return lottoNumber;
             }
         }
