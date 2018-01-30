@@ -11,46 +11,59 @@
 
 <body>
     <div id="app">
-        <select>
+        <h1>{{ title }}</h1>
+        {{ message }}
+        <!-- <select>
             <option value=>{{ count }}</option>
-        </select>
-
-        {{ count }}
+        </select> -->
+        <input type="number" v-model="count" :placeholder="placeHolder" maxlength="3"/>
         <button @click="handleClick">번호</button>
-        {{ result }}
+        <ol>
+            <li v-for="lotto in result">
+                {{ lotto }}
+            </li>
+        </ol>
     </div>
 </body>
 <script>
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'Hello World',
-            count: 3,
+            title: 'Lotto Number',
+            message: 'Count : ',
+            placeHolder: 'How many to generate?',
+            count: 5,
             result: null,
         },
         methods: {
             handleClick: function () {
                 // console.log(this.count)
-                this.result = this.getLottoNumber(1)
+                this.result = this.getLottoNumber(this.count)
             },
             getRandomInt: function (min, max) {
                 return Math.floor(Math.random() * (max - min) + 1) + min;
             },
             getLottoNumber: function (count) {
+                let lottoCollection = [];
                 let lottoNumber = [];
                 let min = 0;
                 let max = 45;
 
-                for (let index = 0; index < 5; index++) {
-                    let randomNumber = this.getRandomInt(min, max);
-                    while (lottoNumber.indexOf(randomNumber) !== -1) {
-                        randomNumber = this.getRandomInt(min, max);
+                for (let index = 0; index < count; index++) {
+                    lottoNumber = [];
+
+                    for (let index2 = 0; index2 < 5; index2++) {
+                        let randomNumber = this.getRandomInt(min, max);
+                        while (lottoNumber.indexOf(randomNumber) !== -1) {
+                            randomNumber = this.getRandomInt(min, max);
+                        }
+                        lottoNumber[index2] = randomNumber
                     }
-                    lottoNumber[index] = randomNumber
+
+                    lottoCollection.push(lottoNumber.sort((a, b) => a - b))
                 }
 
-                lottoNumber.sort((a, b) => a - b)
-                return lottoNumber;
+                return lottoCollection;
             }
         }
     })
